@@ -30,8 +30,8 @@ class RotateUserAgentMiddleware(UserAgentMiddleware):
         # ip = self.get_proxy("useful_proxy")
         if ua:
             request.headers.setdefault('User-Agent', ua)
-            # request.headers.setdefault('')
-            #request.meta['proxy'] = 'http://{0}'.format(ip)
+            # 设置代理
+            # request.meta['proxy'] = 'http://{0}'.format(ip)
 
             #response=requests.get("http://10.29.4.242:5010/get/")
             #print('http://{0}'.format(response.text))

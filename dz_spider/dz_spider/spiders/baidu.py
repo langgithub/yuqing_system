@@ -17,7 +17,7 @@ class BaiduSpider(scrapy.Spider):
 
     def start_requests(self):
         for url in self.start_urls:
-            for page in range(37):
+            for page in range(50):
                 yield scrapy.Request(url=f"{url}&pn={page}0")
 
     def parse(self, response):

@@ -11,4 +11,8 @@
 """
 
 from scrapy import cmdline
-cmdline.execute(['scrapy', 'crawl', 'baidu'])
+# cmdline.execute(['scrapy', 'crawl', 'baidu'])
+cmdline.execute(['scrapy', 'crawl', 'toutiao'])
+# cmdline.execute(['scrapy', 'crawl', 'sogou'])
+
+

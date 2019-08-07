@@ -30,7 +30,7 @@ stopwords=pd.read_csv("stopwords.txt",index_col=False,quoting=3,sep="\t",names=[
 stopwords=stopwords['stopword'].values
 
 # 读取新闻内容
-df = pd.read_csv("type.csv", encoding='utf-8',sep = '&@@&')
+df = pd.read_csv("地陷事件.csv", encoding='utf-8',sep = '&@@&')
 x=0
 lines=[((++x),item) for item in df.content.values.tolist()]
 
@@ -42,7 +42,7 @@ lines=[((++x),item) for item in df.content.values.tolist()]
 
 def db_to_csv(lines):
     """保存到本地"""
-    with open("type.csv","w",encoding="utf-8") as f:
+    with open("地陷事件.csv","w",encoding="utf-8") as f:
         f.writelines("url&@@&content\n")
         for line in lines:
             text = line[1].replace("\n", "").replace(" ", "").replace("\t", "")

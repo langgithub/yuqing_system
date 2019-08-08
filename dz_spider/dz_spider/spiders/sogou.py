@@ -11,13 +11,13 @@ from scrapy.log import logger
 class SogouSpider(scrapy.Spider):
     name = 'sogou'
     allowed_domains = ['www.sogou.com']
-    start_urls = ['https://www.sogou.com/tx?hdq=sogou-wsse-3f7bcd0b3ea82268&query=2018年6月1日达州市好一新大火事件&ie=utf8']
+    start_urls = ['https://www.sogou.com/tx?query=2018%E5%B9%B48%E6%9C%88%E8%BE%BE%E5%B7%9E%E5%87%BA%E7%A7%9F%E8%BD%A6%E7%BD%A2%E5%B7%A5%E4%BA%8B%E4%BB%B6&hdq=sogou-wsse-3f7bcd0b3ea82268&duppid=1&cid=&s_from=result_up&sut=1606&sst0=1565226159021&lkt=0,0,0&sugsuv=006E51C00177C3995CB434B8FE950363&sugtime=1565226159021&ie=utf8&w=01029901&dr=1']
     mysql = MysqlPipline()
 
 
     def start_requests(self):
         for url in self.start_urls:
-            for page in range(1,41):
+            for page in range(0,3):
                 yield scrapy.Request(url=f"{url}&page={page}")
 
     def parse(self, response):

@@ -15,16 +15,16 @@ class ToutiaoSpider(scrapy.Spider):
 
     name = 'toutiao'
     allowed_domains = ['www.toutiao.com']
-    start_urls = ['https://www.toutiao.com/api/search/content/?aid=24&app_name=web_search&format=json&keyword=2018%E5%B9%B46%E6%9C%881%E6%97%A5%E8%BE%BE%E5%B7%9E%E5%B8%82%E5%A5%BD%E4%B8%80%E6%96%B0%E5%A4%A7%E7%81%AB%E4%BA%8B%E4%BB%B6&autoload=true&count=20&en_qc=1&cur_tab=1&from=search_tab&pd=synthesis']
+    start_urls = ['https://www.toutiao.com/api/search/content/?aid=24&app_name=web_search&format=json&keyword=2018%E5%B9%B48%E6%9C%88%E5%9B%9B%E5%B7%9D%E8%BE%BE%E5%B7%9E%E5%B8%82%E5%87%BA%E7%A7%9F%E8%BD%A6%E7%BD%A2%E5%B7%A5%E4%BA%8B%E4%BB%B6&autoload=true&count=20&en_qc=1&cur_tab=1&from=search_tab&pd=synthesis']
     mysql = MysqlPipline()
 
 
     def start_requests(self):
         driver=webdriver.Chrome(executable_path="/Users/yuanlang/work/javascript/chromedriver")
-        driver.get("https://www.toutiao.com/search/?keyword=2018%E5%B9%B46%E6%9C%881%E6%97%A5%E8%BE%BE%E5%B7%9E%E5%B8%82%E5%A5%BD%E4%B8%80%E6%96%B0%E5%A4%A7%E7%81%AB%E4%BA%8B%E4%BB%B6")
+        driver.get("https://www.toutiao.com/search/?keyword=2018%E5%B9%B48%E6%9C%88%E5%9B%9B%E5%B7%9D%E8%BE%BE%E5%B7%9E%E5%B8%82%E5%87%BA%E7%A7%9F%E8%BD%A6%E7%BD%A2%E5%B7%A5%E4%BA%8B%E4%BB%B6")
         time.sleep(2)
         for url in self.start_urls:
-            for page in range(0,10):
+            for page in range(0,8):
                 driver.get(url=f"{url}&offset={20*page}&timestamp={'%d'%(time.time()*1000)}")
                 time.sleep(5)
                 html=scrapy.Selector(text=driver.page_source)

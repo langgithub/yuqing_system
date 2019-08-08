@@ -11,13 +11,13 @@ from scrapy.log import logger
 class BaiduSpider(scrapy.Spider):
     name = 'baidu'
     allowed_domains = ['www.baidu.com']
-    start_urls = ['https://www.baidu.com/s?wd=2018%E5%B9%B46%E6%9C%881%E6%97%A5%E8%BE%BE%E5%B7%9E%E5%B8%82%E5%A5%BD%E4%B8%80%E6%96%B0%E5%A4%A7%E7%81%AB%E4%BA%8B%E4%BB%B6&oq=2018%E5%B9%B46%E6%9C%881%E6%97%A5%E8%BE%BE%E5%B7%9E%E5%B8%82%E5%A5%BD%E4%B8%80%E6%96%B0%E5%A4%A7%E7%81%AB%E4%BA%8B%E4%BB%B6&ie=utf-8&rsv_pq=de0d66320006de70&rsv_t=a244HdKKpXzA2TaA7xIlhfudcHE7OQ30N1QoR7twy3vznXDO%2BM4iUqnnapo']
+    start_urls = ['https://www.baidu.com/s?wd=2018%E5%B9%B48%E6%9C%88%E8%BE%BE%E5%B7%9E%E5%87%BA%E7%A7%9F%E8%BD%A6%E7%BD%A2%E5%B7%A5%E4%BA%8B%E4%BB%B6&oq=2018%E5%B9%B48%E6%9C%88%E8%BE%BE%E5%B7%9E%E5%87%BA%E7%A7%9F%E8%BD%A6%E7%BD%A2%E5%B7%A5%E4%BA%8B%E4%BB%B6&ie=utf-8&rsv_pq=f23a79aa000d332f&rsv_t=7059xeWb4ls1KKoJ0h16REkV2j9830xUMMrCpERps%2BBRpST5YFJuXbPeYuo']
     mysql = MysqlPipline()
 
 
     def start_requests(self):
         for url in self.start_urls:
-            for page in range(5,70):
+            for page in range(9):
                 yield scrapy.Request(url=f"{url}&pn={page}0")
 
     def parse(self, response):

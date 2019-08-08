@@ -1,7 +1,7 @@
 # encoding: utf-8
 """
 --------------------------------------
-@describe 
+@describe 新闻内容提取
 @version: 1.0
 @project: yuqing_system
 @file: news.py
@@ -26,7 +26,7 @@ def download(url):
     try:
         print(f"fetch url --------> {url}")
         news = Article(url, language='zh')
-        reponse = requests.get(url, verify=False,timeout=10)
+        reponse = requests.get(url, verify=False,timeout=3)
         if reponse.status_code==404 or reponse.status_code==503:
             sql = "update seed set status=-1 where url='" + url + "'"
             print(sql)
@@ -51,6 +51,12 @@ def download(url):
         conn.commit()
     except Exception as e:
         print("exception"+str(repr(e)))
+        if "TimeoutError" in str(e) or "HTTPSConnectionPool" in str(e) or "Exceeded 30 redirects" in str(e) \
+                or "Max retries" in str(e) or "HTTPConnectionPool" in str(e) or "Data too long" in str(e):
+            sql = "update seed set status=-1 where url='" + url + "'"
+            print(sql)
+            cursor.execute(sql)
+            conn.commit()
 
 
 def spider():

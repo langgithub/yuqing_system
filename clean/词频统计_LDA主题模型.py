@@ -1,10 +1,10 @@
 # encoding: utf-8
 """
 --------------------------------------
-@describe 
+@describe 数据整理
 @version: 1.0
 @project: yuqing_system
-@file: 关键字提取.py
+@file: 词频统计_LDA主题模型.py
 @author: yuanlang 
 @time: 2019-08-07 10:00
 ---------------------------------------
@@ -30,7 +30,10 @@ stopwords=pd.read_csv("stopwords.txt",index_col=False,quoting=3,sep="\t",names=[
 stopwords=stopwords['stopword'].values
 
 # 读取新闻内容
-df = pd.read_csv("地陷事件.csv", encoding='utf-8',sep = '&@@&')
+# df = pd.read_csv("地陷事件.csv", encoding='utf-8',sep = '&@@&')
+# df = pd.read_csv("出租车罢工.csv", encoding='utf-8',sep = '&@@&')
+df = pd.read_csv("好一新大火.csv", encoding='utf-8',sep = '&@@&')
+
 x=0
 lines=[((++x),item) for item in df.content.values.tolist()]
 
@@ -42,7 +45,7 @@ lines=[((++x),item) for item in df.content.values.tolist()]
 
 def db_to_csv(lines):
     """保存到本地"""
-    with open("地陷事件.csv","w",encoding="utf-8") as f:
+    with open("好一新大火.csv","w",encoding="utf-8") as f:
         f.writelines("url&@@&content\n")
         for line in lines:
             text = line[1].replace("\n", "").replace(" ", "").replace("\t", "")
@@ -76,7 +79,7 @@ def word_count(lines,stopwords):
     plt.imshow(wordcloud)
     plt.show()
 
-# word_count(lines,stopwords)
+word_count(lines,stopwords)
 
 def lda(lines,stopwords):
     """lda主题"""
@@ -115,7 +118,7 @@ def lda(lines,stopwords):
     print(data_df[:10].index)
     print(data_df[:10]["count"])
 
-    number = numpy.array(data_df[:10]["count"].values)
+    number = numpy.array(data_df[:10]["count"].values*1000)
     work_type = data_df[:10]["index"].values
 
 
@@ -127,4 +130,4 @@ def lda(lines,stopwords):
     plt.show()
 
 
-lda(lines,stopwords)
+# lda(lines,stopwords)

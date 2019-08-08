@@ -79,7 +79,7 @@ def word_count(lines,stopwords):
     plt.imshow(wordcloud)
     plt.show()
 
-word_count(lines,stopwords)
+# word_count(lines,stopwords)
 
 def lda(lines,stopwords):
     """lda主题"""
@@ -130,4 +130,4 @@ def lda(lines,stopwords):
     plt.show()
 
 
-# lda(lines,stopwords)
+lda(lines,stopwords)

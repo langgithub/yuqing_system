@@ -29,9 +29,9 @@ stopwords=pd.read_csv(f"{os.path.dirname(__file__)}/stopwords.txt",index_col=Fal
 stopwords=stopwords['stopword'].values
 
 # 读取新闻内容
-# df = pd.read_csv("地陷事件.csv", encoding='utf-8',sep = '&@@&')
-# df = pd.read_csv("出租车罢工.csv", encoding='utf-8',sep = '&@@&')
-df = pd.read_csv(f"{os.path.dirname(__file__)}/好一新大火.csv", encoding='utf-8',sep = '&@@&')
+df = pd.read_csv(f"{os.path.dirname(__file__)}/地陷事件.csv", encoding='utf-8',sep = '&@@&')
+# df = pd.read_csv(f"{os.path.dirname(__file__)}/出租车罢工.csv", encoding='utf-8',sep = '&@@&')
+# df = pd.read_csv(f"{os.path.dirname(__file__)}/好一新大火.csv", encoding='utf-8',sep = '&@@&')
 
 x=0
 lines=[((++x),item) for item in df.content.values.tolist()]
@@ -98,7 +98,8 @@ def lda(lines,stopwords):
     corpus = [dictionary.doc2bow(_sentence) for _sentence in sentences]
     lda = gensim.models.ldamodel.LdaModel(corpus=corpus, id2word=dictionary, num_topics=20)
 
-    # print(lda.print_topic(3, topn=5))
+    # 主题模型打印
+    print(lda.print_topics())
     wors={}
     for topic in lda.print_topics():
         words=topic[1].split("+")

@@ -9,7 +9,7 @@
 @time: 2019-08-07 10:00
 ---------------------------------------
 """
-
+import os
 import jieba
 import pymysql
 import pandas as pd
@@ -23,16 +23,15 @@ plt.rcParams['figure.figsize'] = (5.0, 5.0)
 plt.rcParams['font.sans-serif'] = ['simhei']
 plt.rcParams['axes.unicode_minus'] = False
 
-
-
+print(os.path.dirname(__file__))
 # 导入停用词
-stopwords=pd.read_csv("stopwords.txt",index_col=False,quoting=3,sep="\t",names=['stopword'], encoding='utf-8')
+stopwords=pd.read_csv(f"{os.path.dirname(__file__)}/stopwords.txt",index_col=False,quoting=3,sep="\t",names=['stopword'], encoding='utf-8')
 stopwords=stopwords['stopword'].values
 
 # 读取新闻内容
 # df = pd.read_csv("地陷事件.csv", encoding='utf-8',sep = '&@@&')
 # df = pd.read_csv("出租车罢工.csv", encoding='utf-8',sep = '&@@&')
-df = pd.read_csv("好一新大火.csv", encoding='utf-8',sep = '&@@&')
+df = pd.read_csv(f"{os.path.dirname(__file__)}/好一新大火.csv", encoding='utf-8',sep = '&@@&')
 
 x=0
 lines=[((++x),item) for item in df.content.values.tolist()]
